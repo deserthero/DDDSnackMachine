@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SnackMachineATMAutomation.Logic
 {
 
-    public sealed class SnackMachine
+    public sealed class SnackMachine : Entity
     {
         public Money MoneyInside { get; private set; }
         public Money MoneyInTransaction { get; private set; }
