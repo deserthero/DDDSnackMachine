@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace SnackMachineATMAutomation.Logic
 {
-    public sealed class Money
+    public sealed class Money : ValueObject<Money>
     {
+
         public int OneCentCount { get; set; }
         public int TenCentCount { get; set; }
         public int QuarterCentCount { get; set; }
@@ -43,6 +44,32 @@ namespace SnackMachineATMAutomation.Logic
                 );
 
             return sum;
+        } 
+
+
+        protected override bool EqualsCore(Money other)
+        {
+            return OneCentCount == other.OneCentCount
+                && TenCentCount == other.TenCentCount
+                && QuarterCentCount == other.QuarterCentCount
+                && OneDollarCount == other.OneDollarCount
+                && FiveDollarCount == other.FiveDollarCount
+                && TweentyDollarCount == other.TweentyDollarCount;
+        }
+
+        // All members of the value object should take part of the hashcode generation
+        protected override int GetHashCodeCore()
+        {
+            unchecked
+            {
+                int hashCode = OneCentCount;
+                hashCode = (hashCode * 397) ^ TenCentCount;
+                hashCode = (hashCode * 397) ^ QuarterCentCount;
+                hashCode = (hashCode * 397) ^ OneDollarCount;
+                hashCode = (hashCode * 397) ^ FiveDollarCount;
+                hashCode = (hashCode * 397) ^ TweentyDollarCount;
+                return hashCode;
+            }
         }
     }
 }
