@@ -106,5 +106,36 @@ namespace DDDSnackMachine.Tests
             money.Amount.ShouldBeEquivalentTo(expectedAmount);
         }
 
+
+        [Fact]
+        public void Sub_Of_Two_Money_Produce_Correct_Result()
+        {
+            var money1 = new Money(1, 2, 3, 4, 5, 6);
+            var money2 = new Money(1, 2, 3, 4, 5, 6);
+
+            var sub = money1 - money2;
+
+            sub.OneCentCount.Should().Be(0);
+            sub.TenCentCount.Should().Be(0);
+            sub.QuarterCentCount.Should().Be(0);
+            sub.OneDollarCount.Should().Be(0);
+            sub.FiveDollarCount.Should().Be(0);
+            sub.TweentyDollarCount.Should().Be(0);
+        }
+
+        [Fact]
+        public void Cannot_subtract_more_than_exists()
+        {
+            Money money1 = new Money(0, 1, 0, 0, 0, 0);
+            Money money2 = new Money(1, 0, 0, 0, 0, 0);
+
+            Action action = () =>
+            {
+                Money money = money1 - money2;
+            };
+
+            action.ShouldThrow<InvalidOperationException>();
+        }
+
     }
 }
