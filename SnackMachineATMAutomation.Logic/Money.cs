@@ -25,7 +25,23 @@ namespace SnackMachineATMAutomation.Logic
         {
 
 
+            if (oneCentCount < 0)
+                throw new InvalidOperationException();
 
+            if (tenCentCount < 0)
+                throw new InvalidOperationException();
+
+            if (quarterCentCount < 0)
+                throw new InvalidOperationException();
+
+            if (oneDollarCount < 0)
+                throw new InvalidOperationException();
+
+            if (fiveDollarCount < 0)
+                throw new InvalidOperationException();
+
+            if (tweentyDollarCount < 0)
+                throw new InvalidOperationException();
 
             OneCentCount += oneCentCount;
             TenCentCount += tenCentCount;
