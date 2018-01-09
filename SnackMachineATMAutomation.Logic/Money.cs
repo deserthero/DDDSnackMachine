@@ -20,9 +20,17 @@ namespace SnackMachineATMAutomation.Logic
         {
             get
             {
-                return 0.0m;
+                return
+           OneCentCount * 0.01m +
+           TenCentCount * 0.10m +
+           QuarterCentCount * 0.25m +
+           OneDollarCount +
+           FiveDollarCount * 5 +
+           TweentyDollarCount * 20;
             }
         }
+
+
 
         public Money(int oneCentCount,
             int tenCentCount,
