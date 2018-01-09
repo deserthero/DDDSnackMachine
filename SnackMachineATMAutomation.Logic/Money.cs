@@ -23,6 +23,10 @@ namespace SnackMachineATMAutomation.Logic
             int fiveDollarCount,
             int tweentyDollarCount)
         {
+
+
+
+
             OneCentCount += oneCentCount;
             TenCentCount += tenCentCount;
             QuarterCentCount += quarterCentCount;
@@ -44,7 +48,7 @@ namespace SnackMachineATMAutomation.Logic
                 );
 
             return sum;
-        } 
+        }
 
 
         protected override bool EqualsCore(Money other)
