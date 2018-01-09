@@ -52,7 +52,7 @@ namespace DDDSnackMachine.Tests
             oneDollar.GetHashCode().Should().NotBe(tenCent.GetHashCode());
 
         }
-        // This test will fail cause we didn't implement it in the class so we should go and implement this feature
+
         [Theory]
         [InlineData(-1, 0, 0, 0, 0, 0)]
         [InlineData(0, -2, 0, 0, 0, 0)]
@@ -67,7 +67,7 @@ namespace DDDSnackMachine.Tests
             int fiveDollarCount,
             int tweentyDollarCount)
         {
-            Action action = () => new Money( oneCentCount,
+            Action action = () => new Money(oneCentCount,
                 tenCentCount,
                 quarterCentCount,
                 oneDollarCount,
@@ -75,6 +75,36 @@ namespace DDDSnackMachine.Tests
                 tweentyDollarCount);
 
             action.ShouldThrow<InvalidOperationException>();
+
+
         }
+
+
+        [Theory]
+        [InlineData(0, 0, 0, 0, 0, 0, 0)]
+        [InlineData(1, 0, 0, 0, 0, 0, 0.01)]
+        [InlineData(1, 2, 0, 0, 0, 0, 0.21)]
+        [InlineData(1, 2, 3, 0, 0, 0, 0.96)]
+        [InlineData(1, 2, 3, 4, 5, 0, 29.96)]
+        [InlineData(0, 0, 0, 0, 0, 1, 20)]
+        public void Amount_Is_Calculated_Correctly(
+    int oneCentCount,
+    int tenCentCount,
+    int quarterCentCount,
+    int oneDollarCount,
+    int fiveDollarCount,
+    int tweentyDollarCount,
+    double expectedAmount)
+        {
+           Money money =  new Money(oneCentCount,
+                tenCentCount,
+                quarterCentCount,
+                oneDollarCount,
+                fiveDollarCount,
+                tweentyDollarCount);
+
+            money.Amount.ShouldBeEquivalentTo(expectedAmount);
+        }
+
     }
 }

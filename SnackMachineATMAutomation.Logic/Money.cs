@@ -16,6 +16,14 @@ namespace SnackMachineATMAutomation.Logic
         public int FiveDollarCount { get; set; }
         public int TweentyDollarCount { get; set; }
 
+        public decimal Amount
+        {
+            get
+            {
+                return 0.0m;
+            }
+        }
+
         public Money(int oneCentCount,
             int tenCentCount,
             int quarterCentCount,
