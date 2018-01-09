@@ -9,26 +9,37 @@ namespace SnackMachineATMAutomation.Logic
 
     public sealed class SnackMachine : Entity
     {
-        public Money MoneyInside { get; private set; }
-        public Money MoneyInTransaction { get; private set; }
+        public Money MoneyInside { get; private set; } = Money.None;
+        public Money MoneyInTransaction { get; private set; } = Money.None;
 
-
+        public SnackMachine()
+        {
+        }
 
         public void InsertMoney(Money money)
         {
+            Money[] coinsAndNotes =
+           {
+                Money.Cent, Money.TenCent, Money.QuarterCent, Money.Dollar, Money.FiveDollar, Money.TweentyDollar
+            };
+            if (!coinsAndNotes.Contains(money))
+                throw new InvalidOperationException();
+
+
             MoneyInTransaction += money;
         }
 
         public void ReturnsMoney()
         {
-            // MoneyInTransaction = 0;
+            // This like MoneyInTransaction = 0 cause the Money class is immutable
+            MoneyInTransaction = Money.None;
         }
 
         public void BuySnack()
         {
             MoneyInside += MoneyInTransaction;
 
-            // MoneyInTransaction = 0;
+            MoneyInTransaction = Money.None;
 
         }
 
